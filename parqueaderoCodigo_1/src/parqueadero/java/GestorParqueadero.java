@@ -228,7 +228,7 @@ public class GestorParqueadero {
      * @param documento
      * @param placa
      * @return 
-     */
+     */ 
     public String desaparcarVehiculo(String documento,String placa){
         Cliente cliente = buscarCliente(documento);
         if(cliente == null){
