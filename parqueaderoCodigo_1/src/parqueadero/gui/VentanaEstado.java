@@ -187,14 +187,16 @@ public class VentanaEstado extends javax.swing.JFrame {
     }//GEN-LAST:event_bVolverActionPerformed
 
     private void bParquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bParquearActionPerformed
+        String placa = JOptionPane.showInputDialog("Ingresar placa: ");
         String documento = JOptionPane.showInputDialog("Ingresar documento: ");
-        JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().parquearVehiculo(documento), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().parquearVehiculo(documento,placa), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
         actualizarTexto();
     }//GEN-LAST:event_bParquearActionPerformed
 
     private void bDesaparcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDesaparcarActionPerformed
+        String placa = JOptionPane.showInputDialog("Ingresar placa: ");
         String documento = JOptionPane.showInputDialog("Ingresar documento: ");
-        JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().desaparcarVehiculo(documento), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().desaparcarVehiculo(documento,placa), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
         actualizarTexto();
     }//GEN-LAST:event_bDesaparcarActionPerformed
 

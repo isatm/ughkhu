@@ -189,53 +189,64 @@ public class GestorParqueadero {
     /**
      * 
      * @param documento
+     * @param placa
      * @return 
      */
-    public String parquearVehiculo(String documento){
+    public String parquearVehiculo(String documento, String placa){
         Cliente cliente = buscarCliente(documento);
         if(cliente == null){
             return "El cliente no esta registrado";
         }
+        
         for(int i = 0; i < vehiculos.size(); i++){
-            if(vehiculos.get(i).getPlaca().equals(cliente.getVehiculo().getPlaca())){
-                if(buscarVehiculoParqueado(cliente.getVehiculo().getPlaca()) == null){
-                    LugarDeParqueo lugar = buscarLugarLibre();
-                    if(lugar != null){
-                        lugar.setVehiculo(vehiculos.get(i));
-                        Hora hora = new Hora();
-                        lugar.setHora(hora);
-                        return "El vehiculo parqueo en el "+lugar.getFila()+","+lugar.getColumna()+" a las "+hora.getHoras()+":"+hora.getMinutos();
-                    }else{
-                        return "No hay lugares disponibles";
-                    }
+            
+            if(vehiculos.get(i).getPlaca().equals(placa)){
+                
+                if(cliente.getVehiculo().getPlaca().equals(placa)){
+                    if(buscarVehiculoParqueado(cliente.getVehiculo().getPlaca()) == null){
+                        LugarDeParqueo lugar = buscarLugarLibre();
+                        if(lugar != null){
+                            lugar.setVehiculo(vehiculos.get(i));
+                            Hora hora = new Hora();
+                            lugar.setHora(hora);
+                            return "El vehiculo parqueo en el "+lugar.getFila()+","+lugar.getColumna()+" a las "+hora.getHoras()+":"+hora.getMinutos();
+                        }else{
+                            return "No hay lugares disponibles";
+                        }
+                    }   
                 }else{
-                    return "El vehiculo ya esta parqueado";
+                    return "El cliente no es el dueño del vehiculo";
                 }
                 
-            }
+            } 
         }
         return "El vehiculo no esta registrado";
     }
     
-    public String desaparcarVehiculo(String documento){
+    
+    public String desaparcarVehiculo(String documento,String placa){
         Cliente cliente = buscarCliente(documento);
         if(cliente == null){
             return "El cliente no esta registrado";
         }
         for(int i = 0; i < vehiculos.size(); i++){
-            if(vehiculos.get(i).getPlaca().equals(cliente.getVehiculo().getPlaca())){
-                LugarDeParqueo lugar = buscarVehiculoParqueado(cliente.getVehiculo().getPlaca());
-                    if(lugar != null){
-                        Hora hora = new Hora();
-                        String valor = valorVehiculo(lugar, hora);
-                        lugar.setVehiculo(null);
-                        lugar.setHora(null);
-                        return "El documento " +documento+ " entrego " +vehiculos.get(i).getMarca()+", placa: "+vehiculos.get(i).getPlaca()+ 
-                                    "\nValor a pagar: "+valor;
-                    }else{
-                        return "El vehiculo no esta parqueado";
-                    }
-            }
+            if(vehiculos.get(i).getPlaca().equals(placa)){
+                if(vehiculos.get(i).getPlaca().equals(cliente.getVehiculo().getPlaca())){
+                    LugarDeParqueo lugar = buscarVehiculoParqueado(cliente.getVehiculo().getPlaca());
+                        if(lugar != null){
+                            Hora hora = new Hora();
+                            String valor = valorVehiculo(lugar, hora);
+                            lugar.setVehiculo(null);
+                            lugar.setHora(null);
+                            return "El documento " +documento+ " entrego " +vehiculos.get(i).getMarca()+", placa: "+vehiculos.get(i).getPlaca()+ 
+                                        "\nValor a pagar: "+valor;
+                        }else{
+                            return "El vehiculo no esta parqueado";
+                        }
+                }else{
+                    return "El cliente no esta registrado";
+                }
+        }
         }
         return "El vehiculo no esta registrado";
     }
