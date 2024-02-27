@@ -116,7 +116,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             ventanaEstado = new VentanaEstado();
             ventanaEstado.setVentanaPrincipal(this);
         }
-        ventanaEstado.actualizarTexto();
+        ventanaEstado.mapaParqueadero();
         ventanaEstado.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bEstadoActionPerformed

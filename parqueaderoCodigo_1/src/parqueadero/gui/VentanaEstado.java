@@ -25,7 +25,7 @@ public class VentanaEstado extends javax.swing.JFrame {
     /**
      * Esta funcion es la del mapa del parqueadero
      */
-    public void actualizarTexto(){
+    public void mapaParqueadero(){
         jTarifa.setText(String.valueOf(ventanaPrincipal.getGestor().getTarifa()));
         jPorcentajes.setText(ventanaPrincipal.getGestor().porcentajeParqueadero());
         
@@ -195,14 +195,14 @@ public class VentanaEstado extends javax.swing.JFrame {
         String placa = JOptionPane.showInputDialog("Ingresar placa: ");
         String documento = JOptionPane.showInputDialog("Ingresar documento: ");
         JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().parquearVehiculo(documento,placa), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
-        actualizarTexto();
+        mapaParqueadero();
     }//GEN-LAST:event_bParquearActionPerformed
 
     private void bDesaparcarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDesaparcarActionPerformed
         String placa = JOptionPane.showInputDialog("Ingresar placa: ");
         String documento = JOptionPane.showInputDialog("Ingresar documento: ");
         JOptionPane.showMessageDialog(this, ventanaPrincipal.getGestor().desaparcarVehiculo(documento,placa), "INFORMACION: ", JOptionPane.INFORMATION_MESSAGE);
-        actualizarTexto();
+        mapaParqueadero();
     }//GEN-LAST:event_bDesaparcarActionPerformed
 
     private void bValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bValorActionPerformed
