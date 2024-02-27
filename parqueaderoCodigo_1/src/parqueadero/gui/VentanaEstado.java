@@ -21,6 +21,10 @@ public class VentanaEstado extends javax.swing.JFrame {
         this.ventanaPrincipal = ventanaPrincipal;
     }
     
+    
+    /**
+     * Esta funcion es la del mapa del parqueadero
+     */
     public void actualizarTexto(){
         jTarifa.setText(String.valueOf(ventanaPrincipal.getGestor().getTarifa()));
         jPorcentajes.setText(ventanaPrincipal.getGestor().porcentajeParqueadero());
@@ -28,17 +32,18 @@ public class VentanaEstado extends javax.swing.JFrame {
         int filas = ventanaPrincipal.getGestor().getFilas();
         int columnas = ventanaPrincipal.getGestor().getColumnas();
         
-        jMapa.removeAll();
+        jMapa.removeAll();   //al ingresar nuevas columnas y filas se reinicia el mapa
+        
         String [][] estado = ventanaPrincipal.getGestor().estadoParqueadero();
         for (int f = 0; f < filas; f++) {
             for (int c = 0; c < columnas; c++) {
-                JPanel lugar = new JPanel();
+                JPanel lugar = new JPanel();   //lugares de parqueo
                 JLabel texto = new JLabel();
                 texto.setText(String.valueOf(f)+","+String.valueOf(c));
-                lugar.add(texto);
-                lugar.setPreferredSize(new Dimension((jMapa.getHeight()/columnas) - 6, (jMapa.getWidth()/filas) - 6));
+                lugar.add(texto);  
+                lugar.setPreferredSize(new Dimension((jMapa.getHeight()/columnas) - 6, (jMapa.getWidth()/filas) - 6)); //dimensiones del mapa para crear los cuadros (lugares de parqueo)
                 if (estado[f][c].equals("Libre")){
-                    lugar.setBackground(Color.LIGHT_GRAY);
+                    lugar.setBackground(Color.LIGHT_GRAY);  
                 }else{
                     lugar.setBackground(Color.red);
                 }

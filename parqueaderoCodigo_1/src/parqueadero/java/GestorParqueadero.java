@@ -187,10 +187,10 @@ public class GestorParqueadero {
     }
     
     /**
-     * 
+     * parquea el vehiculo, busca que el vehiculo sea el mismo que el del cliente 
      * @param documento
      * @param placa
-     * @return 
+     * @return  
      */
     public String parquearVehiculo(String documento, String placa){
         Cliente cliente = buscarCliente(documento);
@@ -223,7 +223,12 @@ public class GestorParqueadero {
         return "El vehiculo no esta registrado";
     }
     
-    
+    /**
+     * busca que el vehiculo sea el mismo que el del cliente y lo desaparca(desparquea) 
+     * @param documento
+     * @param placa
+     * @return 
+     */
     public String desaparcarVehiculo(String documento,String placa){
         Cliente cliente = buscarCliente(documento);
         if(cliente == null){
@@ -244,13 +249,17 @@ public class GestorParqueadero {
                             return "El vehiculo no esta parqueado";
                         }
                 }else{
-                    return "El cliente no esta registrado";
+                    return "El cliente no es dueño de este vehiculo";
                 }
         }
         }
         return "El vehiculo no esta registrado";
     }
     
+    /**
+     * muestra si el lugar esta libre u ocupado
+     * @return 
+     */
     public String [][] estadoParqueadero(){
         String [][] estado = new String [filas][columnas];
         for(int f = 0; f < filas; f++){
@@ -265,6 +274,10 @@ public class GestorParqueadero {
         return estado;
     }
     
+    /**
+     * muestra los porcentajes de libre y desocupado
+     * @return 
+     */
     public String porcentajeParqueadero(){
         String promedios;
         float sumatoriaLibre = 0; 
@@ -285,6 +298,10 @@ public class GestorParqueadero {
         return promedios;
     }
     
+    /**
+     * el valor total de lo que se debe pagar, de todos los vehiculos
+     * @return 
+     */
     public String valorTotal(){
         String mensaje = "";
         for(int f = 0; f < filas; f++){
